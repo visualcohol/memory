@@ -1,0 +1,23 @@
+.app {
+  box-sizing: border-box;
+  font-family: Source Sans Pro;
+  font-weight: 600;
+  color: #98a2a4;
+  * {
+    box-sizing: border-box;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  .icon-cards {
+    width: 40px;
+    height: auto;
+  }
+}
