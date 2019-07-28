@@ -1,7 +1,8 @@
 import React from 'react';
+import ConfigCardNumber from './ConfigCardNumber';
 
 const MainConfig = () => {
-  return <div>main config</div>
-}
+  return <ConfigCardNumber />;
+};
 
 export default MainConfig;
