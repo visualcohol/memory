@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Button.scss';
+
 const Button = props => {
   // Default config values
   const config = {
@@ -7,7 +9,9 @@ const Button = props => {
     color: 'blue'
   };
 
-  return <button className={getClassName(props)}>{props.text}</button>;
+  return (
+    <button className={'button ' + getClassName(props)}>{props.text}</button>
+  );
 
   // Generate className string from props
   function getClassName(props) {
