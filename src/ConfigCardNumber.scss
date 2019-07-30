@@ -17,7 +17,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        transition: transform 0.1s ease-out, background-color 0.1s ease-in-out;
+        transition: transform 0.1s ease-out, background-color 0.1s ease-in-out,
+          opacity 0.1s ease-out;
         user-select: none;
         cursor: pointer;
         &.base {
@@ -30,13 +31,17 @@
         &.number {
           background-color: #63c9dd;
           z-index: 2;
+          opacity: 0;
+          &.visible {
+            opacity: 1;
+          }
           &:hover {
             background-color: darken(#63c9dd, 10%);
           }
         }
       }
     }
-    .backdrop {
+    .overlay {
       position: absolute;
       left: 0;
       top: 0;
@@ -46,7 +51,7 @@
       opacity: 0;
       pointer-events: none;
       z-index: 1;
-      transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.07s ease-in-out;
       &.visible {
         opacity: 1;
         pointer-events: all;

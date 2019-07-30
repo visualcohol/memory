@@ -21,7 +21,7 @@ const ConfigCardNumber = () => {
         {createNumberCards()}
       </div>
       <div
-        className={['backdrop', stateCards ? ' visible' : null].join('')}
+        className={['overlay', stateCards ? ' visible' : null].join('')}
         onClick={() => openCards(false)}
       />
     </div>
@@ -37,7 +37,7 @@ const ConfigCardNumber = () => {
     for (let i = 0; i < 8; i++) {
       cards.push(
         <div
-          className='card number'
+          className={'card number' + (stateCards ? ' visible' : '')}
           style={stateCards ? createTransform(i) : null}
           key={i}>
           {config.values[i]}
