@@ -1,6 +1,8 @@
 import React from 'react';
 import ConfigCardNumber from './ConfigCardNumber';
 
+import './MainConfig.scss';
+
 const MainConfig = () => {
   return (
     <div className='main-config'>

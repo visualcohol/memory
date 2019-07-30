@@ -1,8 +1,19 @@
+html,
+body,
+#root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 .memory-app {
   box-sizing: border-box;
   font-family: Source Sans Pro;
   font-weight: 600;
   color: #98a2a4;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   * {
     box-sizing: border-box;
   }
