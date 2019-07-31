@@ -1,0 +1,20 @@
+.memory-app {
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(32, 32, 32, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.07s ease-in-out;
+    &.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

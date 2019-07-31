@@ -1,13 +1,19 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import Overlay from './Overlay';
 import MainContainer from './MainContainer';
+import store from './store';
 
 import './App.scss';
 
 function App() {
   return (
-    <div className='memory-app'>
-      <MainContainer />
-    </div>
+    <Provider store={store}>
+      <div className='memory-app'>
+        <Overlay />
+        <MainContainer />
+      </div>
+    </Provider>
   );
 }
 

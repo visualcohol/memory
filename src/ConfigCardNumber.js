@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { switchOverlay } from './actions/ui';
 
 import './ConfigCardNumber.scss';
 
-const ConfigCardNumber = () => {
+const ConfigCardNumber = props => {
   // Default config values
   const config = {
     defaultCount: 16,
@@ -12,24 +14,30 @@ const ConfigCardNumber = () => {
   // State: cards open / closed
   const [stateCards, setStateCards] = useState(false);
 
+  useEffect(() => {
+    if (props.overlayVisible === false) {
+      if (stateCards === true) {
+        console.log('run');
+        setStateCards(false);
+      }
+    }
+  }, [props.overlayVisible, stateCards]);
+
   return (
     <div className='config-card-number'>
       <div className='cards'>
-        <div className='card base' onClick={() => openCards(!stateCards)}>
+        <div
+          className='card base'
+          onClick={() => {
+            setStateCards(!stateCards);
+            props.switchOverlay(!props.overlayVisible);
+          }}>
           {config.defaultCount}
         </div>
         {createNumberCards()}
       </div>
-      <div
-        className={['overlay', stateCards ? ' visible' : null].join('')}
-        onClick={() => openCards(false)}
-      />
     </div>
   );
-
-  function openCards(current) {
-    setStateCards(current);
-  }
 
   function createNumberCards() {
     let cards = [];
@@ -85,4 +93,17 @@ const ConfigCardNumber = () => {
   }
 };
 
-export default ConfigCardNumber;
+const mapStateToProps = state => {
+  return {
+    overlayVisible: state.ui.overlayVisible
+  };
+};
+
+const mapDispatchToProps = {
+  switchOverlay
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConfigCardNumber);
