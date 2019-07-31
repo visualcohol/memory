@@ -17,7 +17,6 @@ const ConfigCardNumber = props => {
   useEffect(() => {
     if (props.overlayVisible === false) {
       if (stateCards === true) {
-        console.log('run');
         setStateCards(false);
       }
     }
