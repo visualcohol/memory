@@ -3,7 +3,6 @@ const initialState = {
 };
 
 export default function config(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case 'SET_CARD_COUNT':
       return { ...state, cardCount: action.payload.count };
