@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { setCardCount } from './actions/config';
 import { switchOverlay } from './actions/ui';
 
 import './ConfigCardNumber.scss';
@@ -7,7 +8,7 @@ import './ConfigCardNumber.scss';
 const ConfigCardNumber = props => {
   // Default config values
   const config = {
-    defaultCount: 16,
+    defaultCount: props.cardCount,
     values: [1, 2, 3, 4, 5, 6, 7, 8]
   };
 
@@ -44,6 +45,7 @@ const ConfigCardNumber = props => {
     for (let i = 0; i < 8; i++) {
       cards.push(
         <div
+          onClick={e => handleNumberClick(config.values[i])}
           className={'card number' + (stateCards ? ' visible' : '')}
           style={stateCards ? createTransform(i) : null}
           key={i}>
@@ -53,6 +55,12 @@ const ConfigCardNumber = props => {
     }
 
     return cards;
+  }
+
+  function handleNumberClick(number) {
+    props.setCardCount(number);
+    setStateCards(false);
+    props.switchOverlay(false);
   }
 
   function createTransform(cardIndex) {
@@ -94,11 +102,13 @@ const ConfigCardNumber = props => {
 
 const mapStateToProps = state => {
   return {
+    cardCount: state.config.cardCount,
     overlayVisible: state.ui.overlayVisible
   };
 };
 
 const mapDispatchToProps = {
+  setCardCount,
   switchOverlay
 };
 
