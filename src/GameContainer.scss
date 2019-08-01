@@ -1,0 +1,12 @@
+.memory-app {
+  .game-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .info {
+      padding: 25px 0;
+    }
+  }
+}

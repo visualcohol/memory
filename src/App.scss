@@ -5,15 +5,20 @@ body,
   padding: 0;
   margin: 0;
 }
+body {
+  padding: 15px;
+  box-sizing: border-box;
+}
+.memory-app,
+.memory-app * {
+  box-sizing: border-box;
+}
 .memory-app {
   box-sizing: border-box;
   font-family: Source Sans Pro;
   font-weight: 600;
   color: #98a2a4;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   * {
     box-sizing: border-box;
   }
@@ -33,5 +38,11 @@ body,
   .icon-cards {
     width: 40px;
     height: auto;
+  }
+  .router {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

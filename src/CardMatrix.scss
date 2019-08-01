@@ -1,0 +1,18 @@
+.memory-app {
+  .card-matrix {
+    flex: 1;
+    margin: 25px 0;
+    .table {
+      display: table;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    .tr {
+      display: table-row;
+    }
+    .td {
+      display: table-cell;
+      border: 1px solid gray;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 import MainConfig from './MainConfig';
 import Button from './Button';
 
@@ -11,7 +12,9 @@ const MainContainer = () => {
       <IconCards />
       <h1>Hi! Want to play a round of memory?</h1>
       <MainConfig />
-      <Button text='Lets go and play!' />
+      <Link to='/game'>
+        <Button text='Lets go and play!' />
+      </Link>
     </div>
   );
 };
