@@ -10,12 +10,17 @@ const CardMatrix = props => {
   // Referencing the matrix
   const cardMatrixEl = useCallback(node => {
     if (node !== null) {
-      setCardMatrix({ height: node.getBoundingClientRect().height });
+      setCardMatrix({
+        height: node.getBoundingClientRect().height,
+        width: node.getBoundingClientRect().width
+      });
     }
+
+    console.log('cb');
   }, []);
 
   /**
-   * Finding pairs of numbers with which the input count is dividalbe as a whole number
+   * Finding pairs of numbers with which the input count is divisilbe as a whole number
    */
   function getDivisions(count) {
     const divisionPairs = [];
@@ -62,6 +67,25 @@ const CardMatrix = props => {
     return tr;
   }
 
+  /**
+   * Generating the table style.
+   * It needs to have the maximum width or length whichever fits on the screen.
+   */
+  function styleTable(width, height) {
+    let size = width;
+
+    if (width > height) {
+      size = height;
+    } else if (width < height) {
+      size = width;
+    }
+
+    return {
+      width: size,
+      height: size
+    };
+  }
+
   const divisions = getDivisions(props.count);
   const closestPair = getClosestPair(divisions);
 
@@ -69,10 +93,9 @@ const CardMatrix = props => {
     <div className='card-matrix' ref={cardMatrixEl}>
       <div
         className='table'
-        style={{
-          height: cardMatrix ? cardMatrix.height - 2 : null,
-          width: cardMatrix ? cardMatrix.height - 2 : null
-        }}>
+        style={
+          cardMatrix ? styleTable(cardMatrix.width, cardMatrix.height) : null
+        }>
         {generateMatrix(closestPair)}
       </div>
     </div>
