@@ -4,3 +4,14 @@ export const switchOverlay = overlayVisible => ({
     overlayVisible
   }
 });
+
+export const increaseTime = () => ({
+  type: 'INCREASE_TIME'
+});
+
+export const setTimeInterval = interval => ({
+  type: 'SET_TIME_INTERVAL',
+  payload: {
+    interval
+  }
+});

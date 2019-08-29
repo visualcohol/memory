@@ -1,0 +1,34 @@
+.memory-app {
+  .info-line {
+    padding: 25px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 18px;
+    display: flex;
+    .left,
+    .right {
+      width: 50%;
+    }
+    .left {
+      text-align: left;
+    }
+    .right {
+      display: flex;
+      justify-content: flex-end;
+      > div {
+        margin-left: 20px;
+        &::after {
+          content: '|';
+          position: relative;
+          left: 10px;
+        }
+        &:last-child::after {
+          content: '';
+        }
+        &.link {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
