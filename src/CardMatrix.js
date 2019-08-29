@@ -15,8 +15,6 @@ const CardMatrix = props => {
         width: node.getBoundingClientRect().width
       });
     }
-
-    console.log('cb');
   }, []);
 
   /**

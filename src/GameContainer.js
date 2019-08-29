@@ -1,17 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CardMatrix from './CardMatrix';
 
 import './GameContainer.scss';
 
-const GameContainer = () => {
+const GameContainer = props => {
   return (
     <div className='game-container'>
-      {/* [12, 16, 20, 25, 30, 36, 64, 100] */}
       <div className='info'>info</div>
-      <CardMatrix count={100} height={500} />
+      <CardMatrix count={props.cardCount} />
     </div>
   );
 };
 
-export default GameContainer;
+const mapStateToProps = state => {
+  return {
+    cardCount: state.config.cardCount
+  };
+};
+
+export default connect(mapStateToProps)(GameContainer);
