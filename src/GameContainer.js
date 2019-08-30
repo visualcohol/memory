@@ -10,7 +10,6 @@ import './GameContainer.scss';
 const GameContainer = props => {
   // Starting the timer on game start
   // Creating a global interval identifier
-  console.log(props);
   const increaseTime = props.increaseTime;
   const timePaused = props.timePaused;
   useEffect(() => {
