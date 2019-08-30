@@ -1,31 +1,24 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { increaseTime, pauseTime } from './actions/ui';
+import { pauseTime, increaseTime, setTime } from './actions/ui';
 
+import Timer from './Timer';
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
 
 import './GameContainer.scss';
 
 const GameContainer = props => {
-  // Starting the timer on game start
-  // Creating a global interval identifier
-  const increaseTime = props.increaseTime;
-  const timePaused = props.timePaused;
+  const pauseTime = props.pauseTime;
+
+  // Unpausing time on mount
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!timePaused) increaseTime();
-    }, 1000);
-
-    return function cleanup() {
-      clearInterval(interval);
-    };
-  }, [increaseTime, timePaused]);
-
-  // Render
+    pauseTime(false);
+  }, [pauseTime]);
 
   return (
     <div className='game-container'>
+      <Timer {...props} />
       <InfoLine {...props} />
       <CardMatrix count={props.cardCount} />
     </div>
@@ -41,8 +34,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  increaseTime,
-  pauseTime
+  setTime,
+  pauseTime,
+  increaseTime
 };
 
 export default connect(

@@ -12,6 +12,9 @@ export default function ui(state = initialState, action) {
     case 'INCREASE_TIME':
       return { ...state, time: state.time + 1000 };
 
+    case 'SET_TIME':
+      return { ...state, time: action.payload.time };
+
     case 'PAUSE_TIME':
       return { ...state, timePaused: action.payload.pause };
 
