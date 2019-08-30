@@ -9,7 +9,7 @@ const ConfigCardNumber = props => {
   // Default config values
   const config = {
     defaultCount: props.cardCount,
-    values: [12, 16, 20, 25, 30, 36, 64, 100]
+    values: [12, 16, 20, 24, 30, 36, 64, 100]
   };
 
   // State: cards open / closed
