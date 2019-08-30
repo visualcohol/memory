@@ -21,12 +21,18 @@
           content: '|';
           position: relative;
           left: 10px;
+          color: #98a2a4;
         }
         &:last-child::after {
           content: '';
         }
         &.link {
           cursor: pointer;
+        }
+      }
+      .pause {
+        &.paused {
+          color: #e91e63;
         }
       }
     }

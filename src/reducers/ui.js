@@ -1,7 +1,7 @@
 const initialState = {
   overlayVisible: false,
   time: 0,
-  timeInterval: null
+  timePaused: false
 };
 
 export default function ui(state = initialState, action) {
@@ -12,8 +12,8 @@ export default function ui(state = initialState, action) {
     case 'INCREASE_TIME':
       return { ...state, time: state.time + 1000 };
 
-    case 'SET_TIME_INTERVAL':
-      return { ...state, timeInterval: action.payload.interval };
+    case 'PAUSE_TIME':
+      return { ...state, timePaused: action.payload.pause };
 
     default:
       return state;

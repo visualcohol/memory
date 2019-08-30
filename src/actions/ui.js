@@ -9,9 +9,9 @@ export const increaseTime = () => ({
   type: 'INCREASE_TIME'
 });
 
-export const setTimeInterval = interval => ({
-  type: 'SET_TIME_INTERVAL',
+export const pauseTime = pause => ({
+  type: 'PAUSE_TIME',
   payload: {
-    interval
+    pause: pause
   }
 });

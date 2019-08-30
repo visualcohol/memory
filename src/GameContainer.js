@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { increaseTime, setTimeInterval } from './actions/ui';
+import { increaseTime, pauseTime } from './actions/ui';
 
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
@@ -10,22 +10,18 @@ import './GameContainer.scss';
 const GameContainer = props => {
   // Starting the timer on game start
   // Creating a global interval identifier
-
+  console.log(props);
   const increaseTime = props.increaseTime;
-  const setTimeInterval = props.setTimeInterval;
-
+  const timePaused = props.timePaused;
   useEffect(() => {
     const interval = setInterval(() => {
-      increaseTime();
+      if (!timePaused) increaseTime();
     }, 1000);
-
-    setTimeInterval(interval);
 
     return function cleanup() {
       clearInterval(interval);
-      setTimeInterval(null);
     };
-  }, [increaseTime, setTimeInterval]);
+  }, [increaseTime, timePaused]);
 
   // Render
 
@@ -40,14 +36,14 @@ const GameContainer = props => {
 const mapStateToProps = state => {
   return {
     cardCount: state.config.cardCount,
-    timeInterval: state.ui.timeInterval,
-    time: state.ui.time
+    time: state.ui.time,
+    timePaused: state.ui.timePaused
   };
 };
 
 const mapDispatchToProps = {
   increaseTime,
-  setTimeInterval
+  pauseTime
 };
 
 export default connect(
