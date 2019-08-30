@@ -5,7 +5,9 @@ import './InfoLine.scss';
 const InfoLine = props => {
   return (
     <div className='info-line'>
-      <div className='left'>Found 33 pairs out of 55</div>
+      <div className='left'>
+        Found 0 pairs out of {props.cardCount / 2} possible
+      </div>
       <div className='right'>
         <div className='timer'>
           {new Date(props.time).toISOString().substr(14, 5)}
