@@ -22,3 +22,24 @@ export const pauseTime = pause => ({
     pause: pause
   }
 });
+
+export const flipFirst = cardId => ({
+  type: 'FLIP_FIRST',
+  payload: {
+    cardId: cardId
+  }
+});
+
+export const flipSecond = cardId => ({
+  type: 'FLIP_SECOND',
+  payload: {
+    cardId: cardId
+  }
+});
+
+export const addFound = id => ({
+  type: 'ADD_FOUND',
+  payload: {
+    id: id
+  }
+});

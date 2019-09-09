@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Card.scss';
 
 const Card = props => {
   const [flipped, setFlipped] = useState(false);
+  const propsFlipped = props.flipped;
+
+  useEffect(() => {
+    if (typeof propsFlipped !== 'undefined') setFlipped(propsFlipped);
+  }, [propsFlipped]);
 
   return (
     <div className='card' onClick={handleClick}>
@@ -20,7 +25,17 @@ const Card = props => {
   );
 
   function handleClick() {
-    setFlipped(!flipped);
+    if (props.firstFlipped === null) {
+      props.flipFirst(props.cardId);
+    } else if (props.secondFlipped === null) {
+      if (props.firstFlipped !== props.cardId) {
+        props.flipSecond(props.cardId);
+      }
+    } else {
+      console.log('all flipped');
+    }
+
+    setFlipped(true);
   }
 };
 

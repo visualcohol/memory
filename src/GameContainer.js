@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { pauseTime, increaseTime, setTime } from './actions/ui';
+import {
+  pauseTime,
+  increaseTime,
+  setTime,
+  flipFirst,
+  flipSecond
+} from './actions/ui';
 
 import Timer from './Timer';
 import InfoLine from './InfoLine';
@@ -18,9 +24,9 @@ const GameContainer = props => {
 
   return (
     <div className='game-container'>
-      <Timer {...props} />
+      {/* <Timer {...props} /> */}
       <InfoLine {...props} />
-      <CardMatrix count={props.cardCount} />
+      <CardMatrix {...props} />
     </div>
   );
 };
@@ -29,14 +35,19 @@ const mapStateToProps = state => {
   return {
     cardCount: state.config.cardCount,
     time: state.ui.time,
-    timePaused: state.ui.timePaused
+    timePaused: state.ui.timePaused,
+    firstFlipped: state.ui.firstFlipped,
+    secondFlipped: state.ui.secondFlipped,
+    found: state.ui.found
   };
 };
 
 const mapDispatchToProps = {
   setTime,
   pauseTime,
-  increaseTime
+  increaseTime,
+  flipFirst,
+  flipSecond
 };
 
 export default connect(

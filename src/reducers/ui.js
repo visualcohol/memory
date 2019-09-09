@@ -1,7 +1,10 @@
 const initialState = {
   overlayVisible: false,
   time: 0,
-  timePaused: false
+  timePaused: false,
+  firstFlipped: null,
+  secondFlipped: null,
+  found: []
 };
 
 export default function ui(state = initialState, action) {
@@ -17,6 +20,15 @@ export default function ui(state = initialState, action) {
 
     case 'PAUSE_TIME':
       return { ...state, timePaused: action.payload.pause };
+
+    case 'FLIP_FIRST':
+      return { ...state, firstFlipped: action.payload.cardId };
+
+    case 'FLIP_SECOND':
+      return { ...state, secondFlipped: action.payload.cardId };
+
+    case 'ADD_FOUND':
+      return { ...state, found: state.found.push(action.payload.id) };
 
     default:
       return state;

@@ -5,11 +5,11 @@ import Card from './Card';
 import './CardMatrix.scss';
 
 const CardMatrix = props => {
-  // props.count : number of cards
+  // props.cardCount : number of cards
 
   const [cardMatrix, setCardMatrix] = useState(null);
   const [cardIds, setCardIds] = useState([]);
-  const cardCount = props.count;
+  const cardCount = props.cardCount;
 
   // Referencing the matrix
   const cardMatrixEl = useCallback(node => {
@@ -58,9 +58,9 @@ const CardMatrix = props => {
   function getDivisions(count) {
     const divisionPairs = [];
 
-    for (let i = 1; i <= props.count; i++) {
-      if (props.count % i === 0) {
-        divisionPairs.push([i, props.count / i]);
+    for (let i = 1; i <= props.cardCount; i++) {
+      if (props.cardCount % i === 0) {
+        divisionPairs.push([i, props.cardCount / i]);
       }
     }
 
@@ -91,7 +91,7 @@ const CardMatrix = props => {
       for (let i2 = 0; i2 < numberPair[0]; i2++) {
         td[i].push(
           <div className='td' key={i2}>
-            <Card cardId={cardIds[i * numberPair[0] + i2]} />
+            <Card {...props} cardId={cardIds[i * numberPair[0] + i2]} />
           </div>
         );
       }
@@ -127,7 +127,7 @@ const CardMatrix = props => {
     };
   }
 
-  const divisions = getDivisions(props.count);
+  const divisions = getDivisions(props.cardCount);
   const closestPair = getClosestPair(divisions);
 
   return (
