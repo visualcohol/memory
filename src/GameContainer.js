@@ -8,7 +8,6 @@ import {
   flipSecond
 } from './actions/ui';
 
-import Timer from './Timer';
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
 
@@ -24,7 +23,6 @@ const GameContainer = props => {
 
   return (
     <div className='game-container'>
-      {/* <Timer {...props} /> */}
       <InfoLine {...props} />
       <CardMatrix {...props} />
     </div>
