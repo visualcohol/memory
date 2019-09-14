@@ -4,7 +4,15 @@ const initialState = {
   timePaused: false,
   firstFlipped: null,
   secondFlipped: null,
-  found: []
+  found: [],
+  cards: {
+    1: {
+      uuid: 1,
+      cid: 5,
+      flipped: false,
+      matched: false
+    }
+  }
 };
 
 export default function ui(state = initialState, action) {

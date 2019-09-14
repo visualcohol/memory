@@ -2,15 +2,10 @@
   .card {
     height: 100%;
     width: 100%;
-    //background-color: rgb(233, 233, 141);
     cursor: pointer;
-
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
-    // border: 1px solid #f1f1f1;
+    border: 1px solid #f1f1f1;
     perspective: 1000px;
-    // &:hover .card-inner {
-    //   transform: rotateY(-180deg);
-    // }
     .card-inner {
       position: relative;
       width: 100%;

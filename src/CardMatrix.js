@@ -8,7 +8,7 @@ const CardMatrix = props => {
   // props.cardCount : number of cards
 
   const [cardMatrix, setCardMatrix] = useState(null);
-  const [cardIds, setCardIds] = useState([]);
+  const [cards, setCards] = useState({});
   const cardCount = props.cardCount;
 
   // Referencing the matrix
@@ -21,13 +21,27 @@ const CardMatrix = props => {
     }
   }, []);
 
-  // Preparing and shufling the cards
   useEffect(() => {
-    for (let i = 0; i < cardCount / 2; i++) {
-      cardIds.push(i, i);
+    // Creating cards
+    const cardList = [];
+
+    for (let i = 0; i < cardCount; i += 2) {
+      cardList[i] = {
+        uuid: i,
+        cid: i,
+        flipped: false,
+        matched: false
+      };
+      cardList[i + 1] = {
+        uuid: i + 1,
+        cid: i,
+        flipped: false,
+        matched: false
+      };
     }
-    setCardIds(shuffle(cardIds));
-  }, [cardCount, cardIds]);
+
+    setCards(shuffle(cardList));
+  }, [cardCount]);
 
   /**
    * Shuffling array
@@ -83,17 +97,31 @@ const CardMatrix = props => {
    * Also assigning the cards to each matrix slot
    */
   function generateMatrix(numberPair) {
+    if (!numberPair) return;
+    if (!Object.keys(cards).length) return;
+
     const tr = [];
     const td = [];
 
-    for (let i = 0; i < numberPair[1]; i++) {
-      td[i] = [];
-      for (let i2 = 0; i2 < numberPair[0]; i2++) {
-        td[i].push(
-          <div className='td' key={i2}>
-            <Card {...props} cardId={cardIds[i * numberPair[0] + i2]} />
+    let i = 0;
+
+    for (let i2 = 0; i2 < numberPair[1]; i2++) {
+      td[i2] = [];
+      for (let i3 = 0; i3 < numberPair[0]; i3++) {
+        const cardUId = cards[i].uuid;
+        const cardId = cards[i].cid;
+        const cardFlipped = cards[i].flipped;
+        td[i2].push(
+          <div
+            className='td'
+            key={i}
+            onClick={() => {
+              handleCardClick(cardUId);
+            }}>
+            <Card flipped={cardFlipped} cardId={cardId} cardUId={cardUId} />
           </div>
         );
+        i += 1;
       }
     }
 
@@ -106,6 +134,111 @@ const CardMatrix = props => {
     }
 
     return tr;
+  }
+
+  // Flipping Card on click
+  function handleCardClick(cardUId) {
+    // Handling flipping state logic
+
+    // Finding card index in cards haystack
+    const cardArrayKey = cards.findIndex(elem => {
+      return elem.uuid === cardUId;
+    });
+
+    // If card flipped already, nothing happens
+    if (cards[cardArrayKey].flipped === true) return;
+
+    // Getting the card flipped and not matched already
+    let flippedCardIndex = null;
+    const flippedCards = cards.filter((elem, index) => {
+      if (elem.flipped === true && elem.matched === false) {
+        flippedCardIndex = index;
+        return elem;
+      }
+      return false;
+    });
+
+    if (flippedCards.length === 0) {
+      // We flipped the first card
+
+      flipCard(cardUId, true);
+    } else if (flippedCards.length === 1) {
+      // We flipped second card
+      const firstCard = cards[flippedCardIndex];
+      const secondCard = cards[cardArrayKey];
+
+      if (flippedCards.length > 1) flipUnmatchedCards(false);
+
+      // Is it a match?
+      if (firstCard.cid === secondCard.cid) {
+        // Its a match!
+
+        // Flipping the actual card
+        flipCard(cardUId, true);
+
+        // Setting matched at card pair
+        setMatch(firstCard.uuid, secondCard.uuid);
+      } else {
+        // No match
+
+        // Flipping the actual card
+        flipCard(cardUId, true);
+
+        setTimeout(() => {
+          // Flipping back all unmatched cards
+          flipCard([firstCard.uuid, secondCard.uuid], false);
+        }, 1000);
+      }
+    } else {
+      // Flipping back all unmatched cards
+      // if you want to flip a third card
+
+      flipUnmatchedCards(false);
+      flipCard(cardUId, true);
+    }
+  }
+
+  // UUID can be number or array
+  function flipCard(uuid, bool = true) {
+    const newCards = [...cards];
+
+    if (Array.isArray(uuid)) {
+      cards.forEach((elem, index) => {
+        if (uuid.indexOf(elem.uuid) >= 0) {
+          newCards[index].flipped = bool;
+        }
+      });
+    } else {
+      const cardArrayKey = cards.findIndex(elem => {
+        return elem.uuid === uuid;
+      });
+
+      newCards[cardArrayKey].flipped = bool;
+    }
+
+    setCards(newCards);
+  }
+
+  function flipUnmatchedCards(bool = true) {
+    const newCards = [...cards];
+
+    newCards.forEach(elem => {
+      if (elem.flipped && !elem.matched) elem.flipped = bool;
+    });
+
+    setCards(newCards);
+  }
+
+  function setMatch(firstUId, secondUId) {
+    const newCards = [...cards];
+
+    newCards.forEach(elem => {
+      if (elem.uuid === firstUId || elem.uuid === secondUId) {
+        elem.matched = true;
+      }
+    });
+
+    setCards(newCards);
   }
 
   /**
@@ -129,6 +262,7 @@ const CardMatrix = props => {
 
   const divisions = getDivisions(props.cardCount);
   const closestPair = getClosestPair(divisions);
+  const matrix = generateMatrix(closestPair);
 
   return (
     <div className='card-matrix' ref={cardMatrixEl}>
@@ -137,7 +271,7 @@ const CardMatrix = props => {
         style={
           cardMatrix ? styleTable(cardMatrix.width, cardMatrix.height) : null
         }>
-        {generateMatrix(closestPair)}
+        {matrix}
       </div>
     </div>
   );

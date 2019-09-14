@@ -6,12 +6,13 @@ const Card = props => {
   const [flipped, setFlipped] = useState(false);
   const propsFlipped = props.flipped;
 
+  // If component is flipped from outside
   useEffect(() => {
     if (typeof propsFlipped !== 'undefined') setFlipped(propsFlipped);
   }, [propsFlipped]);
 
   return (
-    <div className='card' onClick={handleClick}>
+    <div className='card'>
       <div className={'card-inner' + (flipped ? ' flipped' : '')}>
         <div className='card-front'></div>
         <div
@@ -23,20 +24,6 @@ const Card = props => {
       </div>
     </div>
   );
-
-  function handleClick() {
-    if (props.firstFlipped === null) {
-      props.flipFirst(props.cardId);
-    } else if (props.secondFlipped === null) {
-      if (props.firstFlipped !== props.cardId) {
-        props.flipSecond(props.cardId);
-      }
-    } else {
-      console.log('all flipped');
-    }
-
-    setFlipped(true);
-  }
 };
 
 export default Card;
