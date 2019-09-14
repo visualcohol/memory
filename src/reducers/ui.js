@@ -2,17 +2,7 @@ const initialState = {
   overlayVisible: false,
   time: 0,
   timePaused: false,
-  firstFlipped: null,
-  secondFlipped: null,
-  found: [],
-  cards: {
-    1: {
-      uuid: 1,
-      cid: 5,
-      flipped: false,
-      matched: false
-    }
-  }
+  cards: []
 };
 
 export default function ui(state = initialState, action) {
@@ -29,14 +19,8 @@ export default function ui(state = initialState, action) {
     case 'PAUSE_TIME':
       return { ...state, timePaused: action.payload.pause };
 
-    case 'FLIP_FIRST':
-      return { ...state, firstFlipped: action.payload.cardId };
-
-    case 'FLIP_SECOND':
-      return { ...state, secondFlipped: action.payload.cardId };
-
-    case 'ADD_FOUND':
-      return { ...state, found: state.found.push(action.payload.id) };
+    case 'SET_CARDS':
+      return { ...state, cards: action.payload.cards };
 
     default:
       return state;

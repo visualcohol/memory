@@ -6,10 +6,13 @@ import './CardMatrix.scss';
 
 const CardMatrix = props => {
   // props.cardCount : number of cards
+  // props.cards : global array of cards
 
   const [cardMatrix, setCardMatrix] = useState(null);
-  const [cards, setCards] = useState({});
+  //const [cards, setCards] = useState({});
   const cardCount = props.cardCount;
+  const cards = props.cards;
+  const setCards = props.setCards;
 
   // Referencing the matrix
   const cardMatrixEl = useCallback(node => {
@@ -41,7 +44,7 @@ const CardMatrix = props => {
     }
 
     setCards(shuffle(cardList));
-  }, [cardCount]);
+  }, [cardCount, setCards]);
 
   /**
    * Shuffling array
@@ -98,7 +101,7 @@ const CardMatrix = props => {
    */
   function generateMatrix(numberPair) {
     if (!numberPair) return;
-    if (!Object.keys(cards).length) return;
+    if (!cards.length) return;
 
     const tr = [];
     const td = [];

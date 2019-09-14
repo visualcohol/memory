@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {
-  pauseTime,
-  increaseTime,
-  setTime,
-  flipFirst,
-  flipSecond
-} from './actions/ui';
+import { pauseTime, increaseTime, setTime, setCards } from './actions/ui';
 
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
@@ -34,9 +28,7 @@ const mapStateToProps = state => {
     cardCount: state.config.cardCount,
     time: state.ui.time,
     timePaused: state.ui.timePaused,
-    firstFlipped: state.ui.firstFlipped,
-    secondFlipped: state.ui.secondFlipped,
-    found: state.ui.found
+    cards: state.ui.cards
   };
 };
 
@@ -44,8 +36,7 @@ const mapDispatchToProps = {
   setTime,
   pauseTime,
   increaseTime,
-  flipFirst,
-  flipSecond
+  setCards
 };
 
 export default connect(

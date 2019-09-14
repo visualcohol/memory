@@ -12,7 +12,7 @@ const Card = props => {
   }, [propsFlipped]);
 
   return (
-    <div className='card'>
+    <div className='card-component'>
       <div className={'card-inner' + (flipped ? ' flipped' : '')}>
         <div className='card-front'></div>
         <div
