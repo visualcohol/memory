@@ -102,6 +102,7 @@ const CardMatrix = props => {
   function generateMatrix(numberPair) {
     if (!numberPair) return;
     if (!cards.length) return;
+    if (cards.length !== cardCount) return;
 
     const tr = [];
     const td = [];
