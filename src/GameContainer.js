@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { pauseTime, increaseTime, setTime, setCards } from './actions/ui';
+import { setCards } from './actions/ui';
+import { useMatches } from './hooks/useMatches';
 
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
@@ -8,12 +9,14 @@ import CardMatrix from './CardMatrix';
 import './GameContainer.scss';
 
 const GameContainer = props => {
-  const pauseTime = props.pauseTime;
+  const matches = useMatches(props.cards);
 
-  // Unpausing time on mount
   useEffect(() => {
-    pauseTime(false);
-  }, [pauseTime]);
+    // On every card change we check if game is finished
+    if (matches.length === props.cardCount) {
+      console.log('you won');
+    }
+  }, [matches, props.cardCount]);
 
   return (
     <div className='game-container'>
@@ -33,9 +36,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  setTime,
-  pauseTime,
-  increaseTime,
   setCards
 };
 

@@ -233,6 +233,7 @@ const CardMatrix = props => {
     setCards(newCards);
   }
 
+  // Setch matched state for two cards
   function setMatch(firstUId, secondUId) {
     const newCards = [...cards];
 
