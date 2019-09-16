@@ -1,5 +1,5 @@
 const initialState = {
-  overlayVisible: false,
+  overlay: { visible: false, content: null, effect: '' },
   time: 0,
   timePaused: false,
   cards: []
@@ -8,7 +8,10 @@ const initialState = {
 export default function ui(state = initialState, action) {
   switch (action.type) {
     case 'OVERLAY_SWITCH':
-      return { ...state, overlayVisible: action.payload.overlayVisible };
+      return {
+        ...state,
+        overlay: { ...initialState.overlay, ...action.payload.config }
+      };
 
     case 'INCREASE_TIME':
       return { ...state, time: state.time + 1000 };

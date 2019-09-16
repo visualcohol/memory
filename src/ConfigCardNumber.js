@@ -16,12 +16,12 @@ const ConfigCardNumber = props => {
   const [stateCards, setStateCards] = useState(false);
 
   useEffect(() => {
-    if (props.overlayVisible === false) {
+    if (props.overlay.visible === false) {
       if (stateCards === true) {
         setStateCards(false);
       }
     }
-  }, [props.overlayVisible, stateCards]);
+  }, [props.overlay.visible, stateCards]);
 
   return (
     <div className='config-card-number'>
@@ -30,7 +30,7 @@ const ConfigCardNumber = props => {
           className='card base'
           onClick={() => {
             setStateCards(!stateCards);
-            props.switchOverlay(!props.overlayVisible);
+            props.switchOverlay({ visible: !props.overlay.visible });
           }}>
           {config.defaultCount}
         </div>
@@ -103,7 +103,7 @@ const ConfigCardNumber = props => {
 const mapStateToProps = state => {
   return {
     cardCount: state.config.cardCount,
-    overlayVisible: state.ui.overlayVisible
+    overlay: state.ui.overlay
   };
 };
 

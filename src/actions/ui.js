@@ -1,7 +1,7 @@
-export const switchOverlay = overlayVisible => ({
+export const switchOverlay = config => ({
   type: 'OVERLAY_SWITCH',
   payload: {
-    overlayVisible
+    config
   }
 });
 
