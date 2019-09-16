@@ -10,7 +10,7 @@ const InfoLine = props => {
       <div className='left'>
         Found {matchesFound(props.cards) / 2} pairs out of {props.cardCount / 2}{' '}
         <br />
-        <small>You flipped 6 cards to get there</small>
+        {/* <small>You flipped 6 cards to get there</small> */}
       </div>
       <div className='right'>
         <div className='new-game link' onClick={newGame}>
