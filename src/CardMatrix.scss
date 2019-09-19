@@ -3,16 +3,19 @@
     flex: 1;
     margin: 25px 0;
     .table {
-      display: table;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
       border-collapse: collapse;
       margin: 0 auto;
     }
     .tr {
-      display: table-row;
+      display: flex;
+      flex: 1;
     }
     .td {
-      display: table-cell;
       padding: 0.3%;
+      flex: 1;
       //pointer-events: none;
     }
   }
