@@ -1,5 +1,5 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './InfoLine.scss';
@@ -13,16 +13,16 @@ const InfoLine = props => {
         {/* <small>You flipped 6 cards to get there</small> */}
       </div>
       <div className='right'>
-        <div className='new-game link' onClick={newGame}>
-          New game
-        </div>
+        <Link to='/'>
+          <div className='new-game link'>New game</div>
+        </Link>
       </div>
     </div>
   );
 
-  function newGame() {
-    navigate('/');
-  }
+  // function newGame() {
+  //   navigate('/');
+  // }
 
   function matchesFound(cards) {
     const matchedCards = cards.filter(elem => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from '@reach/router';
+import { MemoryRouter as Router, Route } from 'react-router';
 import Overlay from './Overlay';
 import MainContainer from './MainContainer';
 import GameContainer from './GameContainer';
@@ -14,8 +14,8 @@ function App() {
       <div className='memory-app'>
         <Overlay />
         <Router className='router'>
-          <MainContainer path='/' />
-          <GameContainer path='/game' />
+          <Route path='/' exact component={MainContainer} />
+          <Route path='/game' component={GameContainer} />
         </Router>
       </div>
     </Provider>
