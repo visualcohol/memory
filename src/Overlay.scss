@@ -10,7 +10,7 @@
     height: 100vh;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.07s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
     z-index: 100;
     &.visible {
       opacity: 1;
