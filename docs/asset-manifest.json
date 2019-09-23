@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "./static/css/main.362c1996.chunk.css",
+    "main.css": "./static/css/main.5c31f8c4.chunk.css",
     "main.js": "./static/js/main.1549ede7.chunk.js",
     "main.js.map": "./static/js/main.1549ede7.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.7b6e8a7f.js",
@@ -8,10 +8,10 @@
     "static/js/2.b690a490.chunk.js": "./static/js/2.b690a490.chunk.js",
     "static/js/2.b690a490.chunk.js.map": "./static/js/2.b690a490.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.ddb9c37bf753b9f79db4fc766330598f.js": "./precache-manifest.ddb9c37bf753b9f79db4fc766330598f.js",
+    "precache-manifest.15677041a51f02dea24313f6c1ce9c99.js": "./precache-manifest.15677041a51f02dea24313f6c1ce9c99.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.362c1996.chunk.css.map": "./static/css/main.362c1996.chunk.css.map",
+    "static/css/main.5c31f8c4.chunk.css.map": "./static/css/main.5c31f8c4.chunk.css.map",
     "static/media/icon_cards.cad0624f.svg": "./static/media/icon_cards.cad0624f.svg",
-    "static/media/index.scss": "./static/media/source-sans-pro-v12-latin_latin-ext-600.f3d848e7.ttf"
+    "static/media/index.scss": "./static/media/source-sans-pro-v12-latin_latin-ext-700.c1c09b29.svg"
   }
 }
