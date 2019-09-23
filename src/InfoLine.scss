@@ -21,6 +21,7 @@
     .right {
       display: flex;
       justify-content: flex-end;
+      padding-right: 40px;
       > div {
         margin-left: 20px;
         &::after {
