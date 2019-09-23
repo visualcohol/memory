@@ -22,7 +22,7 @@ const Overlay = props => {
           particleCount: 100,
           spread: 160
         });
-      }, 1000);
+      }, 500);
     }
   }, [props]);
 

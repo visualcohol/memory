@@ -1,5 +1,5 @@
 const initialState = {
-  overlay: { visible: false, content: null, effect: '' },
+  overlay: { visible: false, content: null, effect: '', timeout: null },
   time: 0,
   timePaused: false,
   cards: []

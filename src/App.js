@@ -12,8 +12,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className='memory-app'>
-        <Overlay />
         <Router className='router'>
+          <Overlay />
           <Route path='/' exact component={MainContainer} />
           <Route path='/game' component={GameContainer} />
         </Router>

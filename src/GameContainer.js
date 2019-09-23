@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setCards, switchOverlay } from './actions/ui';
 import { useMatches } from './hooks/useMatches';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import InfoLine from './InfoLine';
 import CardMatrix from './CardMatrix';
@@ -18,22 +18,22 @@ const GameContainer = props => {
   useEffect(() => {
     // On every card change we check if game is finished
     if (matches.length === propsCardCount) {
-      setTimeout(() => {
-        const overlaytext = (
-          <div>
-            <h1>You are awesome!</h1>
-            <h3 className='ad'>You found all the pairs!</h3>
-            <Link to='/'>
-              <Button text='Play again' />
-            </Link>
-          </div>
-        );
-        propsSwitchOverlay({
-          visible: true,
-          content: overlaytext,
-          effect: 'confetti'
-        });
-      }, 2000);
+      const overlaytext = (
+        <div>
+          <h1>You are awesome!</h1>
+          <h3 className='ad'>You found all the pairs!</h3>
+          <Link to='/'>
+            <Button text='Play again' />
+          </Link>
+        </div>
+      );
+
+      propsSwitchOverlay({
+        visible: true,
+        content: overlaytext,
+        effect: 'confetti',
+        timeout: 1000
+      });
     }
   }, [matches, propsCardCount, propsSwitchOverlay]);
 

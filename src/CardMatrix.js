@@ -7,7 +7,7 @@ import './CardMatrix.scss';
 const CardMatrix = props => {
   // props.cardCount : number of cards
   // props.cards : global array of cards
-
+  console.log('cardMAtrix');
   const [cardMatrix, setCardMatrix] = useState(null);
   //const [cards, setCards] = useState({});
   const cardCount = props.cardCount;
